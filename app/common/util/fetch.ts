@@ -1,5 +1,5 @@
 import { cookies } from 'next/headers'
-import { PostOptions } from '../common/post-options.interface'
+import { PostOptions } from '../interfaces/post-options.interface'
 import { API_URL } from '../constants/api'
 import { getErrorMessage } from './errors'
 
