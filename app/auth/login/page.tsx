@@ -7,7 +7,7 @@ import login from './login'
 
 export default function Login() {
   const [state, formAction] = useActionState(login, { error: '' })
-  console.log('state', state)
+
   return (
     <form action={formAction} className="w-full max-w-xs">
       <Stack spacing={2}>
