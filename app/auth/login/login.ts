@@ -6,6 +6,7 @@ import { getErrorMessage } from '@/app/common/util/errors'
 import { jwtDecode } from 'jwt-decode'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
+import { AUTHENTICATION_COOKIE } from '../auth-cookies'
 
 export default async function login(_prevState: FormError, formData: FormData) {
   const res = await fetch(`${API_URL}/auth/login`, {
@@ -20,7 +21,7 @@ export default async function login(_prevState: FormError, formData: FormData) {
     return { error: getErrorMessage(parseRes) }
   }
 
-  setAuthCookie(res)
+  await setAuthCookie(res)
 
   redirect('/')
 }
@@ -32,7 +33,7 @@ const setAuthCookie = async (response: Response) => {
     const token = setCookiesHeader.split(';')[0].split('=')[1]
     const cookieStore = await cookies()
     cookieStore.set({
-      name: 'Authentication',
+      name: AUTHENTICATION_COOKIE,
       value: token,
       secure: true,
       httpOnly: true,
