@@ -27,18 +27,15 @@ export const post = async (path: string, formData: FormData, options?: PostOptio
     }
   }
 
-  // if (options?.returnRes) {
-  //   return res
-  // }
-
   return { error: '' }
 }
 
-export const get = async (path: string) => {
+export const get = async <T>(path: string, tags?: string[]): Promise<T> => {
   const headerCookies = await getCookies()
   const res = await fetch(`${API_URL}/${path}`, {
-    
     headers: { ...headerCookies },
+    next: { tags },
   })
-  return res.json()
+  const data = (await res.json()) as unknown
+  return data as T
 }
