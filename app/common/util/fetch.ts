@@ -3,7 +3,7 @@ import { PostOptions } from '../interfaces/post-options.interface'
 import { API_URL } from '../constants/api'
 import { getErrorMessage } from './errors'
 
-const getCookies = async () => {
+export const getHeaders = async () => {
   const cookieStore = await cookies()
   return {
     Cookie: cookieStore.toString(),
@@ -11,7 +11,7 @@ const getCookies = async () => {
 }
 
 export const post = async (path: string, formData: FormData, options?: PostOptions) => {
-  const headerCookies = await getCookies()
+  const headerCookies = await getHeaders()
 
   const res = await fetch(`${API_URL}/${path}`, {
     method: 'POST',
@@ -27,11 +27,11 @@ export const post = async (path: string, formData: FormData, options?: PostOptio
     }
   }
 
-  return { error: '' }
+  return { error: '', data: parseRes }
 }
 
 export const get = async <T>(path: string, tags?: string[]): Promise<T> => {
-  const headerCookies = await getCookies()
+  const headerCookies = await getHeaders()
   const res = await fetch(`${API_URL}/${path}`, {
     headers: { ...headerCookies },
     next: { tags },
