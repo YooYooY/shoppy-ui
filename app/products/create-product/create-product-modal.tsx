@@ -88,7 +88,7 @@ export default function CreateProductModal({ open, handleCloseAction }: CreatePr
               <input
                 type="file"
                 name="image"
-                accept="image/*"
+                accept="image/jpeg"
                 style={fileInputStyles}
                 onChange={(e) => e.target.files && setFilename(e.target.files[0].name)}
               />
