@@ -17,8 +17,8 @@ export default async function Products({ params }: SingleProductProps) {
 
   return (
     <Grid container marginBottom={'2rem'} rowGap={3}>
-      <Grid size={{ xs: 12, md: 6 }}>
-        {product.imageExists && (
+      {product.imageExists && (
+        <Grid size={{ xs: 12, md: 6 }}>
           <Image
             src={getProductImage(product.id)}
             width={0}
@@ -27,8 +27,8 @@ export default async function Products({ params }: SingleProductProps) {
             sizes="100vw"
             alt="Picture of the product"
           />
-        )}
-      </Grid>
+        </Grid>
+      )}
       <Grid size={{ xs: 12, md: 6 }}>
         <Stack gap={3}>
           <Typography variant="h2">{product.name}</Typography>
