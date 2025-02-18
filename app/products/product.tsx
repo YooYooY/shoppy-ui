@@ -29,6 +29,7 @@ export default function Product({ product }: ProductProps) {
           )}
           <Typography>{product.description}</Typography>
           <Typography>{product.price}</Typography>
+          <Typography>{product.sold ? 'Sold' : 'Available'}</Typography>
         </Stack>
       </Card>
     </CardActionArea>
