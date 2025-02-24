@@ -32,10 +32,12 @@ export const post = async (path: string, data: FormData | object, options?: Post
   return { error: '', data: parseRes }
 }
 
-export const get = async <T>(path: string, tags?: string[]): Promise<T> => {
+export const get = async <T>(path: string, tags?: string[], params?: URLSearchParams): Promise<T> => {
+  const url = params ? `${API_URL}/${path}?` + params : `${API_URL}/${path}`
   const headerCookies = await getHeaders()
-  const res = await fetch(`${API_URL}/${path}`, {
+  const res = await fetch(url, {
     headers: { ...headerCookies },
+    // https://nextjs.org/docs/app/api-reference/functions/fetch#optionsnexttags
     next: { tags },
   })
   const data = (await res.json()) as unknown
