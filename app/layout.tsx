@@ -5,7 +5,7 @@ import { CssBaseline, Container } from '@mui/material'
 import Provider from './providers'
 
 import Header from './header/header'
-import authenticated from './auth/authenticated'
+import authenticated from './auth/actions/authenticated'
 import logout from './auth/logout'
 
 const geistSans = localFont({
